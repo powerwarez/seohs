@@ -4,6 +4,7 @@ import pandas as pd
 from io import BytesIO
 import json
 import time
+import os
 
 # LangChain 관련 라이브러리 임포트
 from langchain.prompts import ChatPromptTemplate
@@ -12,6 +13,12 @@ from langchain_openai import OpenAIEmbeddings, ChatOpenAI
 from langchain_community.vectorstores import FAISS
 from langchain.chains import LLMChain
 from langchain.schema import AIMessage, HumanMessage, SystemMessage
+
+
+# 폴더가 없으면 생성
+documents_path = "./documents/"
+if not os.path.exists(documents_path):
+    os.makedirs(documents_path)
 
 ###############################################################################
 # 0. OpenAI 클라이언트 초기화 & 시스템 프롬프트
